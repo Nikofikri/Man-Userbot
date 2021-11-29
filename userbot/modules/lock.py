@@ -45,6 +45,9 @@ async def locks(event):
     elif input_str == "inline":
         ainline = True
         what = "Inline Bot"
+    elif input_str == "forward":
+        forward = True
+        what = "Forward"
     elif input_str == "poll":
         gpoll = True
         what = "Poll"
@@ -68,6 +71,7 @@ async def locks(event):
         adduser = True
         cpin = True
         changeinfo = True
+        forward = True
         what = "Semuanya"
     else:
         if not input_str:
@@ -87,6 +91,7 @@ async def locks(event):
         invite_users=adduser,
         pin_messages=cpin,
         change_info=changeinfo,
+        send_forward=forward,
     )
     try:
         await event.client(
@@ -111,10 +116,12 @@ async def rem_locks(event):
     gif = None
     gamee = None
     ainline = None
+    forward = None
     gpoll = None
     adduser = None
     cpin = None
     changeinfo = None
+    
     if input_str == "msg":
         msg = False
         what = "Pesan"
@@ -133,6 +140,9 @@ async def rem_locks(event):
     elif input_str == "inline":
         ainline = False
         what = "Inline"
+    elif input_str == "forward":
+        forward = False
+        what = "Forward"
     elif input_str == "poll":
         gpoll = False
         what = "Poll"
@@ -152,11 +162,13 @@ async def rem_locks(event):
         gif = False
         gamee = False
         ainline = False
+        forward = False
         gpoll = False
         adduser = False
         cpin = False
         changeinfo = False
         what = "Semuanya"
+
     else:
         if not input_str:
             await event.edit("`Apa Yang Harus Saya Buka?`")
@@ -173,6 +185,7 @@ async def rem_locks(event):
         send_gifs=gif,
         send_games=gamee,
         send_inline=ainline,
+        send_forward=forward,
         send_polls=gpoll,
         invite_users=adduser,
         pin_messages=cpin,
@@ -203,7 +216,7 @@ CMD_HELP.update(
         \n\n  •  **Syntax :** `{cmd}unlock` <all atau Jenis lock>\
         \n  •  **Function : **Untuk membuka kunci, beberapa jenis pesan dalam obrolan.\
         \n\n  •  **Jenis pesan yang bisa dikunci atau dibuka adalah:**\
-        \n  •  `all, msg, media, sticker, gif, game, inline, poll, invite, pin, info`\
+        \n  •  `all, msg, media, sticker, gif, game, inline, forward, poll, invite, pin, info`\
         \n\n  •  **Contoh :** `.lock msg` atau `.unlock msg`\
     "
     }
