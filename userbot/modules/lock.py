@@ -23,6 +23,7 @@ async def locks(event):
     gif = None
     gamee = None
     ainline = None
+    forward = None
     gpoll = None
     adduser = None
     cpin = None
